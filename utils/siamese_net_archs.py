@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 
 class SiameseNetSimpleDoubleOut(nn.Module):
-    # https://github.com/delijati/pytorch-siamese/blob/master/train_mnist.py
+    #based on https://github.com/delijati/pytorch-siamese/blob/master/train_mnist.py
     def __init__(self):
         super().__init__()
         self.cnn1 = nn.Sequential(
@@ -35,7 +35,7 @@ class SiameseNetSimpleDoubleOut(nn.Module):
 
 
 class SiameseNet5LayersDoubleOut2(nn.Module):
-    # https://becominghuman.ai/siamese-networks-algorithm-applications-and-pytorch-implementation-4ffa3304c18
+    # based on https://becominghuman.ai/siamese-networks-algorithm-applications-and-pytorch-implementation-4ffa3304c18
     def __init__(self):
         super().__init__()
 
@@ -66,11 +66,11 @@ class SiameseNet5LayersDoubleOut2(nn.Module):
         # forward pass of input 2
         output2 = self.forward_once(input2)
         return output1, output2
-    
 
 
-# https://innovationincubator.com/siamese-neural-network-with-pytorch-code-example/
+
 class SiameseNetworkCustom(nn.Module):
+
     def __init__(self):
         super().__init__()
 
@@ -115,7 +115,9 @@ class SiameseNetworkCustom(nn.Module):
         output2 = self.forward_once(input2)
         return output1, output2
 
+
 class SiameseNetworkPretrainedBackboneSigmoid2(nn.Module):
+    
     def __init__(self, pretrained_resnet):
         super().__init__()
         self.backbone = pretrained_resnet
@@ -136,6 +138,7 @@ class SiameseNetworkPretrainedBackboneSigmoid2(nn.Module):
     
     
 class SiameseNetworkPretrainedBackbone(nn.Module):
+    
     def __init__(self, pretrained_resnet, out_act, out_neurons):
         super().__init__()
         assert out_act in ['no_act', 'sigmoid'], "select out act from ['no_act', 'sigmoid']"
@@ -162,5 +165,3 @@ class SiameseNetworkPretrainedBackbone(nn.Module):
             output_res = torch.sigmoid(output_res)
         return output_res
         
-        
-
